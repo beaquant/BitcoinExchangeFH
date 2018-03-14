@@ -27,25 +27,29 @@ Users can
 
 ## Supported exchanges
 
+- Binance (RESTful)
+- Bitflyer (RESTful)
 - Bitfinex (Websocket)
 - BitMEX (Websocket)
 - Bitstamp (Websocket)
+- Bittrex (RESTful)
 - BTCC (RESTful)
+- Cryptopia (RESTful)
+- Coincheck (RESTful)
 - Gatecoin (RESTful)
 - GDAX (Websocket)
+- HuoBi (Websocket)
 - Kraken (RESTful)
-- OkCoin (Websocket)
-- Quoine (RESTful)
+- Liqui (RESTful)
+- Luno (Websocket)
 - Poloniex (RESTful)
-- Bittrex (RESTful)
+- OkCoin (Websocket)
+- Okex (Websocket)
+- Quoine (RESTful)
 - Yunbi (RESTful)
+- Wex (Restful)
 
 Currently the support of other exchanges is still under development.
-
-Scheduled exchange supported soon:
-- xBTCe
-- DABTC
-- FX rate (USDCNY, EURUSD)
 
 ## Supported database/channel
 
@@ -210,6 +214,27 @@ The column definition is as follows:
 |bq\<n\>, aq\<n\>|Best bid and ask volumes, where n is between 1 and 5|
 |update_type|Update type. 1 indicates price depth update, and 2 indicates trade update|
 |order_date_time, trade_date_time|Last update time for the price depth and the trades|
+
+### Library 
+
+If you do not like the console application and would like to write your own, you can use it as
+a library.
+
+```
+    from befh.exch_bittrex import ExchGwApiBittrex as Feed
+    from befh.instrument import Instrument
+    instmt = Instrument(exchange_name="Bittrex", 
+                        instmt_name="LTC/BTC",
+                        instmt_code="BTC-LTC")
+
+    # Get the order book depth
+    depth = Feed.get_order_book(instmt)
+
+    # Get the trades
+    trades = Feed.get_trades(instmt)
+```
+
+where parameter `instmt_code` is the exchange API instrument code.
 
 ## Inquiries
 
